@@ -1,0 +1,57 @@
+{
+  "name": "Memojo",
+  "description": "Send & Receive messages via Transaction Memos",
+  "version": "0.0.1",
+  "main": "main/electron.js",
+  "homepage": ".",
+  "scripts": {
+    "start": "cross-env NODE_ENV=development react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "electron": "electron .",
+    "start:dev": "concurrently \"cross-env NODE_ENV=development npm run start\" \"wait-on http://localhost:3000 && cross-env NODE_ENV=development electron .\""
+  },
+  "appConfig": {
+    "FullNodeRpcUrl": "https://localhost:8555",
+    "WalletRpcUrl": "https://localhost:9256",
+    "DefaultSendMessageAmountInMojos": 100,
+    "DefaultSendMessageFeeInMojos": ""
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "concurrently": "^9.1.0",
+    "cross-env": "^7.0.3",
+    "electron": "^26.6.10",
+    "electron-reload": "^2.0.0-alpha.1",
+    "postcss": "^8.4.49",
+    "react-scripts": "^5.0.1",
+    "tailwindcss": "^3.4.16",
+    "wait-on": "^8.0.1"
+  },
+  "dependencies": {
+    "@craco/craco": "^7.1.0",
+    "axios": "^1.7.9",
+    "chia-bls": "^1.0.3",
+    "electron-is-dev": "^3.0.1",
+    "node-fetch": "^3.3.2",
+    "path-browserify": "^1.0.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.0.2",
+    "uuid": "^11.0.3",
+    "web-vitals": "^4.2.4"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
