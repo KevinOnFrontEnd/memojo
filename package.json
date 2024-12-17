@@ -16,7 +16,7 @@
     "FullNodeRpcUrl": "https://localhost:8555",
     "WalletRpcUrl": "https://localhost:9256",
     "DefaultSendMessageAmountInMojos": 100,
-    "DefaultSendMessageFeeInMojos": ""
+    "DefaultSendMessageFeeInMojos": 6000
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",

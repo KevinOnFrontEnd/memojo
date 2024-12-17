@@ -26,9 +26,9 @@ In the current application, messages within Chia transactions are embedded in JS
 - npm start node
 - npm start wallet
 - Ensure node is fully synced
-- Review package.json appConfig section ensuring the path to the node & wallet certs are correct. These are used for communicating with the rpc endpoints to fetch & send transactions.
+- Review **package.json** appConfig section ensuring the URLs are correct for the rpcs. These are used for communicating with the rpc endpoints to fetch & send transactions.
 - run npm install
-- npm run start:dev
+- **npm run start:dev** or **npm run electron**
 
 This simple PoC requires access to your wallet & node certificates and certificate keys in order to show transactions and post transactions with memos attached.
 
