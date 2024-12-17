@@ -23,12 +23,12 @@ In the current application, messages within Chia transactions are embedded in JS
 # Setup
 
 - Make sure chia wallet and chia full node is running.
-- npm start node
-- npm start wallet
+- chia start node
+- chia start wallet
 - Ensure node is fully synced
 - Review **package.json** appConfig section ensuring the URLs are correct for the rpcs. These are used for communicating with the rpc endpoints to fetch & send transactions.
-- run npm install
-- **npm run start:dev** or **npm run electron**
+- run **npm install** from the terminal
+- run **npm run start:dev** or **npm run electron** from the terminal
 
 This simple PoC requires access to your wallet & node certificates and certificate keys in order to show transactions and post transactions with memos attached.
 
