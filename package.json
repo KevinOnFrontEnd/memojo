@@ -32,6 +32,7 @@
   "dependencies": {
     "@craco/craco": "^7.1.0",
     "axios": "^1.7.9",
+    "bech32": "^2.0.0",
     "chia-bls": "^1.0.3",
     "electron-is-dev": "^3.0.1",
     "node-fetch": "^3.3.2",

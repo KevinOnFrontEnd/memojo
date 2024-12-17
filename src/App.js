@@ -1,15 +1,21 @@
-import React, { useContext } from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
-import Home from './pages/Home';
-import Chat from './pages/Chat';
-import NewChat from './pages/NewChat';
-import { AppContext } from './context/AppContext';
+import React, { useContext, useEffect, useState } from "react";
+import { Routes, Route, Link, useLocation } from "react-router-dom";
+import Home from "./pages/Home";
+import Chat from "./pages/Chat";
+import NewChat from "./pages/NewChat";
+import { AppContext } from "./context/AppContext";
 
 const App = () => {
   const { transactionDetails } = useContext(AppContext);
-  const address = ''; // Replace with the actual address value
+  const location = useLocation();
 
+  const [queryStringChatId, setQueryStringChatId] = useState(null);
 
+  // Rerun effect whenever the location changes
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    setQueryStringChatId(queryParams.get("chatid"));
+  }, [location]);
 
   return (
     <div className="flex h-screen">
@@ -22,27 +28,42 @@ const App = () => {
             <li className="text-white px-4 py-2 rounded-lg hover:bg-blue-600 overflow-hidden text-ellipsis whitespace-nowrap">
               <Link to="/">Home</Link>
             </li>
-            {
-              Object.keys(transactionDetails).map((chat) => (
-                  <li
-                    className="text-white px-4 py-2 rounded-lg hover:bg-blue-600 overflow-hidden text-ellipsis whitespace-nowrap"
-                    key={message}
-                    title={message}
-                  >
-                    <Link to={`/?chatid=${chat}&address=${message}`}>{chat}</Link>
-                  </li>
-                ))
-            }
+            {Object.keys(transactionDetails).map((chat) => {
+              const messages = transactionDetails[chat];
+              const address = (
+                messages.find(
+                  (msg) =>
+                    msg.from !== null &&
+                    msg.from !== "" &&
+                    msg.from !== undefined &&
+                    msg.type == 0
+                ) || {}
+              ).from;
+              return (
+                <li
+                  className={
+                    "text-white px-4 py-2 rounded-lg overflow-hidden text-ellipsis whitespace-nowrap " +
+                    (queryStringChatId == chat ? "bg-blue-600" : "")
+                  }
+                  key={chat}
+                  title={transactionDetails[chat].from}
+                >
+                  <Link to={`/chat?chatid=${chat}&address=${address}`}>
+                    {chat}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </div>
         <div className="p-4">
-        <Link to="/NewChat">
-          <button
-            onClick={() => console.log("New Chat Clicked")}
-            className="w-full bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 overflow-hidden text-ellipsis whitespace-nowrap"
-          >
-            New Message
-          </button>
+          <Link to="/NewChat">
+            <button
+              onClick={() => console.log("New Chat Clicked")}
+              className="w-full bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 overflow-hidden text-ellipsis whitespace-nowrap"
+            >
+              New Message
+            </button>
           </Link>
         </div>
       </div>
