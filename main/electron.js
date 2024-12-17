@@ -395,9 +395,9 @@ const sendMessage = async (walletId, message, to, chatid) => {
     const jsonString = JSON.stringify(messageObj);
     const payload = {
       wallet_id: walletId,
-      amount: 100,
+      amount: config.DefaultSendMessageAmountInMojos,
       address: to,
-      fee: 6000,
+      fee: config.DefaultSendMessageFeeInMojos,
       memos: [jsonString],
     };
 
@@ -414,7 +414,6 @@ const sendMessage = async (walletId, message, to, chatid) => {
           },
         }
       );
-      console.log("Transaction sent:", response.data);
     } catch (error) {
       console.error(
         "Error sending transaction:",
